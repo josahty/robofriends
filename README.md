@@ -1,5 +1,5 @@
 # ztm-course-robofriends
-Exercise to create a web app using React and Redux. From Section 19 of Andrei Neagoie's Zero to Mastery course on Udemy.
+Exercise to create a web app using React components and containers. From Section 19 of Andrei Neagoie's Zero to Mastery course on Udemy.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
