@@ -2,19 +2,34 @@ import React, { Component } from 'react';
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
+import { connect } from 'react-redux';
 import './App.css';
 import ErrorBoundry from '../components/ErrorBoundry'
+import { setSearchField } from '../actions'
 
 //state can change based on what is in search box
 //state >> props
 //has state, so this is a "smart" component
+
+const mapStateToProps = state => {
+    return {
+        //comes from searchRobots reducer
+        searchField: state.searchField
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onSearchChange: (e) => dispatch(setSearchField(e.target.value))
+    }
+}
+
 class App extends Component {
     constructor() {
         super();
         //this state describes the app and lives in the parent component
         this.state = {
-            robots: [],
-            searchfield: ''
+            robots: []
         }
     }
 
@@ -25,16 +40,12 @@ class App extends Component {
             .then(users => this.setState({ robots: users }));
     }
 
-    //on search change, set searchfield to the value in the search box
-    onSearchChange = (e) => {
-        this.setState({ searchfield: e.target.value })
-    }
-
     render() {
-        const { robots, searchfield } = this.state;
+        const { robots } = this.state;
+        const { searchField, onSearchChange } = this.props;
         //create list of robots whose name contains what has been typed in the search box
         const filteredRobots = robots.filter(robot => {
-            return robot.name.toLowerCase().includes(searchfield.toLowerCase());
+            return robot.name.toLowerCase().includes(searchField.toLowerCase());
         })
         //if nonzero
         return !robots.length ?
@@ -44,7 +55,7 @@ class App extends Component {
                 //within errorboundry, if anything in cardlist fails, it will be caught
                 <div className='tc'>
                     <h1 className='f2'>Robot Office Directory</h1>
-                    <SearchBox searchChange={this.onSearchChange} />
+                    <SearchBox searchChange={onSearchChange} />
                     <Scroll>
                         <ErrorBoundry>
                             <CardList robots={filteredRobots} />
@@ -55,4 +66,6 @@ class App extends Component {
     }
 }
 
-export default App;
+//connect is a higher order fuction, meaning it returns another function
+//sub to any state changes in redux store
+export default connect(mapStateToProps, mapDispatchToProps)(App);
