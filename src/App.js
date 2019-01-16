@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CardList from './CardList';
 import { robots } from './robots';
 import SearchBox from './SearchBox';
+import './App.css';
 
 //state can change based on what is in search box
 //state >> props
@@ -28,7 +29,7 @@ class App extends Component {
         //render the component
         return (
             <div className='tc'>
-                <h1>Robot Office Directory</h1>
+                <h1 className='f2'>Robot Office Directory</h1>
                 <SearchBox searchChange={this.onSearchChange} />
                 <CardList robots = {filteredRobots}/>
             </div>
