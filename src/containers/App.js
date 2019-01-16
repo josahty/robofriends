@@ -3,6 +3,7 @@ import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
 import './App.css';
+import ErrorBoundry from '../components/ErrorBoundry'
 
 //state can change based on what is in search box
 //state >> props
@@ -30,24 +31,27 @@ class App extends Component {
     }
 
     render() {
-        const { robots, searchfield} = this.state;
+        const { robots, searchfield } = this.state;
         //create list of robots whose name contains what has been typed in the search box
         const filteredRobots = robots.filter(robot => {
             return robot.name.toLowerCase().includes(searchfield.toLowerCase());
         })
         //if nonzero
         return !robots.length ?
-        <h1>Loading...</h1> :
-        (
-            //render the component
-            <div className='tc'>
-                <h1 className='f2'>Robot Office Directory</h1>
-                <SearchBox searchChange={this.onSearchChange} />
-                <Scroll>
-                    <CardList robots={filteredRobots} />
-                </Scroll>
-            </div>
-        );
+            <h1>Loading...</h1> :
+            (
+                //render the component
+                //within errorboundry, if anything in cardlist fails, it will be caught
+                <div className='tc'>
+                    <h1 className='f2'>Robot Office Directory</h1>
+                    <SearchBox searchChange={this.onSearchChange} />
+                    <Scroll>
+                        <ErrorBoundry>
+                            <CardList robots={filteredRobots} />
+                        </ErrorBoundry>
+                    </Scroll>
+                </div>
+            );
     }
 }
 
