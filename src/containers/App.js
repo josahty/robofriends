@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import CardList from './CardList';
-import SearchBox from './SearchBox';
-import Scroll from './Scroll';
+import CardList from '../components/CardList';
+import SearchBox from '../components/SearchBox';
+import Scroll from '../components/Scroll';
 import './App.css';
 
 //state can change based on what is in search box
@@ -30,24 +30,24 @@ class App extends Component {
     }
 
     render() {
+        const { robots, searchfield} = this.state;
         //create list of robots whose name contains what has been typed in the search box
-        const filteredRobots = this.state.robots.filter(robot => {
-            return robot.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
+        const filteredRobots = robots.filter(robot => {
+            return robot.name.toLowerCase().includes(searchfield.toLowerCase());
         })
-        if (this.state.robots.length === 0) {
-            return <h1>Loading...</h1>
-        } else {
+        //if nonzero
+        return !robots.length ?
+        <h1>Loading...</h1> :
+        (
             //render the component
-            return (
-                <div className='tc'>
-                    <h1 className='f2'>Robot Office Directory</h1>
-                    <SearchBox searchChange={this.onSearchChange} />
-                    <Scroll>
-                        <CardList robots={filteredRobots} />
-                    </Scroll>
-                </div>
-            );
-        }
+            <div className='tc'>
+                <h1 className='f2'>Robot Office Directory</h1>
+                <SearchBox searchChange={this.onSearchChange} />
+                <Scroll>
+                    <CardList robots={filteredRobots} />
+                </Scroll>
+            </div>
+        );
     }
 }
 
