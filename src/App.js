@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
 import CardList from './CardList';
-import { robots } from './robots';
 import SearchBox from './SearchBox';
 import './App.css';
 
 //state can change based on what is in search box
 //state >> props
+//has state, so this is a "smart" component
 class App extends Component {
     constructor() {
         super();
         //this state describes the app and lives in the parent component
         this.state = {
-            robots: robots,
+            robots: [],
             searchfield: ''
         }
+    }
+
+    componentDidMount() {
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(users => this.setState({ robots: users}));
     }
 
     //on search change, set searchfield to the value in the search box
