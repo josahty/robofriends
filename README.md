@@ -1,4 +1,5 @@
 # ztm-course-robofriends
+<<<<<<< HEAD
 Exercise to create a web app using React and Redux. From Section 19 of Andrei Neagoie's Zero to Mastery course on Udemy.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -69,3 +70,6 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+=======
+Exercise to create web app using React and Redux. From Section 19 of Andrei Neagoie's Zero to Mastery course on Udemy.
+>>>>>>> 3b7daf59e0227f89f862bc01d39dacdafb219bf9
