@@ -1,6 +1,22 @@
 # ztm-course-robofriends
 Exercise to create a web app using React components and containers. From Section 19 of Andrei Neagoie's Zero to Mastery course on Udemy.
 
+### Components
+
+## Card
+
+## CardList
+
+## ErrorBoundry
+
+## Scroll
+
+## SearchBox
+
+### Containers
+
+## App
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
