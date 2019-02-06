@@ -7,6 +7,6 @@ Based on the exercise from Section 19 of Andrei Neagoie's [Zero to Mastery cours
 
 1. Clone repo
 2. Run `npm install` to get dependencies
-3. Run `npm run dev` to build the app and start a local server to host it
+3. Run `npm run start` to build the app and start a local server to host it
 
 ## Usage
